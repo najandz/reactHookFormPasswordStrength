@@ -1,5 +1,4 @@
 import React from "react";
-import { calculatePasswordStrength } from "./passwordStrength";
 
 import "./PasswordStrengthIndicator.css";
 
