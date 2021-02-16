@@ -27,7 +27,9 @@ export default function Form() {
         <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
           Password:
           {errors.password && (
-            <span className="form__error">{errors.password.message}</span>
+            <span role="alert" className="spanError">
+              {errors.password.message}
+            </span>
           )}
         </label>
 
@@ -44,7 +46,7 @@ export default function Form() {
           })}
         />
         <PasswordStrengthIndicator passwordStrength={passwordStrength} />
-      </div> 
+      </div>
       <button type="submit">Send</button>
     </form>
   );

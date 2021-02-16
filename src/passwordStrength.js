@@ -63,7 +63,11 @@ export const isStrongPassword = (str) => {
     analysis.symbolCount >= 1
   );
 };
-
+export const superToggle = (element, class0, class1) => {
+  /* eslint-disable no-unused-expressions */
+  element?.classList.add(class0);
+  element?.classList.remove(class1);
+};
 export function ValidatePassword(password) {
   /*Array of rules and the information target*/
   var rules = [
@@ -85,36 +89,17 @@ export function ValidatePassword(password) {
     }
   ];
 
-  /*Length Check, add and remove class could be chained*/
-  /*I've left them seperate here so you can see what is going on */
-  /*Note the Ternary operators ? : to select the classes*/
-
   const length = document.getElementById("Length");
   const passwordContainer = document.getElementById("passwordStrength");
-
-  length?.classList.remove(
-    password.length > 6 ? "glyphicon-remove" : "glyphicon-ok"
-  );
-  length?.classList.add(
-    password.length > 6 ? "glyphicon-ok" : "glyphicon-remove"
-  );
+  password?.length > 6
+    ? superToggle(length, "glyphicon-ok", "glyphicon-remove")
+    : superToggle(length, "glyphicon-remove", "glyphicon-ok");
 
   /*Iterate our remaining rules. The logic is the same as for Length*/
   for (var i = 0; i < rules.length; i++) {
-    passwordContainer
-      ?.querySelector("#" + rules[i].Target)
-      .classList?.remove(
-        new RegExp(rules[i].Pattern).test(password)
-          ? "glyphicon-remove"
-          : "glyphicon-ok"
-      );
-
-    passwordContainer
-      ?.querySelector("#" + rules[i].Target)
-      .classList?.add(
-        new RegExp(rules[i].Pattern).test(password)
-          ? "glyphicon-ok"
-          : "glyphicon-remove"
-      );
+    const target = passwordContainer?.querySelector("#" + rules[i]?.Target);
+    new RegExp(rules[i]?.Pattern).test(password)
+      ? superToggle(target, "glyphicon-ok", "glyphicon-remove")
+      : superToggle(target, "glyphicon-remove", "glyphicon-ok");
   }
 }
