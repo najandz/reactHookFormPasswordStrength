@@ -38,10 +38,9 @@ export default function Form() {
           type="password"
           ref={register({
             required: "Password is required",
-            validate: (value) => {
-              return isStrongPassword(value) === true
-                ? null
-                : "your password is not happy";
+            pattern: {
+              value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,15}$/,
+              message: "Follow the password structure."
             }
           })}
         />
