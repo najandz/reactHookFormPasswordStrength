@@ -1,0 +1,9 @@
+input {
+  border: 1px solid darkslategray;
+}
+
+.form__error {
+  display: inline-block;
+  margin: 0.25rem 0 1rem;
+  color: palevioletred;
+}
